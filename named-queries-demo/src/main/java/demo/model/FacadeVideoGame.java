@@ -33,4 +33,5 @@ public final class FacadeVideoGame
 		query.setParameter("name", nameLike);
 		return query.getResultList();
 	}
+	
 }
