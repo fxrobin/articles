@@ -21,8 +21,8 @@ public class DataPopulator
 		List<VideoGame> data = ListPopulator.start()
 				.add("Xenon", GameGenre.SHOOT_THEM_UP)
 				.add("Xenon 2", GameGenre.SHOOT_THEM_UP)
-				.add("Rick Dangerous", GameGenre.PLATEFORM)
-				.add("Rick Dangerous 2", GameGenre.PLATEFORM)
+				.add("Rick Dangerous", GameGenre.PLATFORM)
+				.add("Rick Dangerous 2", GameGenre.PLATFORM)
 				.add("Stunt Car Racer", GameGenre.RACING)
 				.build();
 

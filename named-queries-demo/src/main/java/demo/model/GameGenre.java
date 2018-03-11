@@ -8,6 +8,6 @@ package demo.model;
  */
 public enum GameGenre
 {
-	RPG, FPS, SHOOT_THEM_UP, ARCADE, PLATEFORM, RACING;
+	RPG, FPS, SHOOT_THEM_UP, ARCADE, PLATFORM, RACING;
 
 }
