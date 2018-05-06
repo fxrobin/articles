@@ -24,7 +24,7 @@ public class PreconditionDemo
 		PreconditionUtil.validateRange(age, AGE_MIN , AGE_MAX, MSG_RANGE_PATTERN, "age");
 		PreconditionUtil.validateNotEmpty(competences, MSG_NOT_EMPTY_COLLECTION, "competences");
 		
-		log.info("Tous les arguments sont vérifiés");
+		// log.info("Tous les arguments sont vérifiés");
 	}
 
 }
