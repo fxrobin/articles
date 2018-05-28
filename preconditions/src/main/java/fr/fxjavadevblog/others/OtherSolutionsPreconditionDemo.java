@@ -1,15 +1,25 @@
-package fr.fxjavadevblog.preconditions;
+package fr.fxjavadevblog.others;
 
 import java.util.regex.Pattern;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.Validate;
 import org.springframework.util.Assert;
 
-import com.github.choonchernlim.betterPreconditions.core.Matcher;
-import com.github.choonchernlim.betterPreconditions.core.PreconditionException;
 import com.github.choonchernlim.betterPreconditions.preconditions.PreconditionFactory;
 import com.google.common.base.Preconditions;
 
+import fr.fxjavadevblog.demo.BeanValidationChecker;
+import fr.fxjavadevblog.demo.PngData;
+import fr.fxjavadevblog.demo.ValidationUtils;
+import fr.fxjavadevblog.preconditions.Checker;
+import fr.fxjavadevblog.resources.PreconditionsMessages;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,6 +27,20 @@ public class OtherSolutionsPreconditionDemo
 {
 
 	private static Pattern pattern = Pattern.compile(PreconditionsMessages.REGEXP_MAJUSCULES);
+	
+	@Getter
+	@AllArgsConstructor
+	protected static class InputData 
+	{
+		@NotNull @NotEmpty @javax.validation.constraints.Pattern(regexp=PreconditionsMessages.REGEXP_MAJUSCULES)
+		private String name;
+		
+		@NotNull @Min(0) @Max(150)
+		private Integer age;
+		
+		@NotNull @PngData
+		private byte[] photo;
+	}
 
 	public static void executeOldSchoolJava(String name, Integer age, byte[] photo)
 	{
@@ -80,19 +104,30 @@ public class OtherSolutionsPreconditionDemo
 		Preconditions.checkArgument(age >= 0 && age <= 150, PreconditionsMessages.MSG_AGE_ENTRE, "age", 0, 150);
 		Preconditions.checkArgument(ValidationUtils.isPngData(photo), PreconditionsMessages.MSG_IMAGE_PNG, "photo");
 	}
-	
 
 	public static void executeBetterPreconditions(String name, Integer age, byte[] photo)
 	{
 		PreconditionFactory.expect(name).not().toBeNull().check();
-		PreconditionFactory.expect(age).not().toBeNull()
-											 .toBeEqualOrGreaterThan(0)
-											 .toBeEqualOrLessThan(150)
-											 .check();
+		PreconditionFactory.expect(age).not().toBeNull().toBeEqualOrGreaterThan(0).toBeEqualOrLessThan(150).check();
 		PreconditionFactory.expect(photo).not().toBeNull().check();
-		
-		// TODO : créer des custom matcher pour les actions plus "particulières".
-		
-									
+
+		// TODO : créer des custom matcher pour les actions plus
+		// "particulières".
+	}
+
+	public static void executeHomeMadePreconditions(String name, Integer age, byte[] photo)
+	{		
+		Checker.notNull(name, PreconditionsMessages.MSG_NOT_NULL, "name");
+		Checker.notNull(age, PreconditionsMessages.MSG_NOT_NULL, "age");
+		Checker.notNull(photo, PreconditionsMessages.MSG_NOT_NULL, "photo");
+		Checker.respects(name, pattern, PreconditionsMessages.MSG_MAJUSCULES, "name");
+		Checker.inRange(age, 0, 150, PreconditionsMessages.MSG_AGE_ENTRE, "age");
+		Checker.respects(photo, ValidationUtils::isPngData, PreconditionsMessages.MSG_IMAGE_PNG, "photo");										  
+	}
+	
+	public static void executeBeanValidation(String name, Integer age, byte[] photo)
+	{
+		InputData input = new InputData(name, age, photo);
+		BeanValidationChecker.check(input);
 	}
 }

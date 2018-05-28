@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.preconditions;
+package fr.fxjavadevblog.demo;
 
 import java.util.Arrays;
 

@@ -4,18 +4,26 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.runners.MethodSorters;
 
-import fr.fxjavadevblog.preconditions.OtherSolutionsPreconditionDemo;
-import fr.fxjavadevblog.preconditions.PreconditionDemo;
+import fr.fxjavadevblog.demo.BeanValidationChecker;
+import fr.fxjavadevblog.demo.PreconditionDemo;
+import fr.fxjavadevblog.others.OtherSolutionsPreconditionDemo;
 
+
+	
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class PreconditionDemoTest
 {
 	
 	private static final int TEST_RUNS = 10000;
 	
 	private static byte[] pngImage = new byte[] { (byte) 0x89,	0x50,	0x4E,	0x47, 0x0D, 0x0A, 0x1A, 0x0A , 0x10, 0x10};
-
+	
+	
 	@RepeatedTest(TEST_RUNS)
 	void testNominalExecute()
 	{
@@ -35,6 +43,18 @@ class PreconditionDemoTest
 	}
 	
 	@RepeatedTest(TEST_RUNS)
+	void testHomeMadePreconditions()
+	{
+		OtherSolutionsPreconditionDemo.executeHomeMadePreconditions("ROBIN", 42, pngImage);
+	}
+	
+	@RepeatedTest(TEST_RUNS)
+	void testBeanValidationPreconditions()
+	{
+		OtherSolutionsPreconditionDemo.executeBeanValidation("ROBIN", 42, pngImage);
+	}
+	
+	@RepeatedTest(TEST_RUNS)
 	void testSpringFramework()
 	{
 		OtherSolutionsPreconditionDemo.executeSpringFramework("ROBIN", 42, pngImage);
@@ -51,5 +71,7 @@ class PreconditionDemoTest
 	{
 		OtherSolutionsPreconditionDemo.executeBetterPreconditions("ROBIN", 42, pngImage);
 	}
+	
+
 
 }

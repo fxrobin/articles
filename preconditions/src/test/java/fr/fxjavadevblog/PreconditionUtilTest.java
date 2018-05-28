@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import fr.fxjavadevblog.preconditions.PreconditionUtil;
+import fr.fxjavadevblog.preconditions.Checker;
 
 class PreconditionUtilTest
 {
@@ -13,7 +13,7 @@ class PreconditionUtilTest
 	{
 		try
 		{
-			PreconditionUtil.validateNotNull(null, "L'attribut %s ne peut pas être nul", "undefined");
+			Checker.notNull(null, "L'attribut %s ne peut pas être nul", "undefined");
 		}
 		catch (IllegalArgumentException e)
 		{
