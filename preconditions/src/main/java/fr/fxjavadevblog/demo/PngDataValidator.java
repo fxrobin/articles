@@ -5,6 +5,8 @@ import javax.validation.ConstraintValidatorContext;
 
 public class PngDataValidator implements ConstraintValidator<PngData, Object>
 {
+	
+	
 
 	@Override
 	public boolean isValid(Object arg, ConstraintValidatorContext arg1)

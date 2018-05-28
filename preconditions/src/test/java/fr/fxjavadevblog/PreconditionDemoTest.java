@@ -4,12 +4,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.runners.MethodSorters;
 
-import fr.fxjavadevblog.demo.BeanValidationChecker;
 import fr.fxjavadevblog.demo.PreconditionDemo;
 import fr.fxjavadevblog.others.OtherSolutionsPreconditionDemo;
 

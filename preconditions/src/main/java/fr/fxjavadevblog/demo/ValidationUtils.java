@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class ValidationUtils
 {
-
 	public static boolean isPngData(byte[] photo)
 	{
 		// signature d'une entête PNG
@@ -12,5 +11,4 @@ public class ValidationUtils
 		Arrays.equals(signature, Arrays.copyOf(photo, signature.length));
 		return true;
 	}
-
 }

@@ -4,9 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import fr.fxjavadevblog.preconditions.Checker;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 public class PreconditionDemo
 {
 	
