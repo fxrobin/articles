@@ -211,11 +211,11 @@ public final class Checker
 	 * à la clé de la Map dont la valeur associée est nulle.
 	 * 
 	 * @param arguments
-	 * 		map à tester
+	 *            map à tester
 	 * 
 	 * @param format
-	 * 	   chaine de formatage du message.
-	 * 	    
+	 *            chaine de formatage du message.
+	 * 
 	 */
 	public static void notNull(Map<?, ?> arguments, String format)
 	{

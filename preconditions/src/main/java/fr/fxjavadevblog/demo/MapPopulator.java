@@ -21,7 +21,7 @@ public class MapPopulator<K, V>
 		return this;
 	}
 
-	public Map<K,V> build()
+	public Map<K, V> build()
 	{
 		return data;
 	}

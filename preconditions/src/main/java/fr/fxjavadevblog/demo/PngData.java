@@ -16,6 +16,8 @@ import javax.validation.Payload;
 public @interface PngData
 {
 	String message() default "Invalid PNG data";
+
 	Class<?>[] groups() default {};
+
 	Class<? extends Payload>[] payload() default {};
 }
