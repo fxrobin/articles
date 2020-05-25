@@ -3,21 +3,18 @@ package fr.fxjavadevblog.demo;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * validator Bean Validation spécialisé dans la validation de données PNG
+ * contenues dans un tableau d'octets.
+ * 
+ * @author fxjavadevblog
+ *
+ */
 public class PngDataValidator implements ConstraintValidator<PngData, Object>
 {
-
 	@Override
-	public boolean isValid(Object arg, ConstraintValidatorContext arg1)
+	public boolean isValid(Object data, ConstraintValidatorContext context)
 	{
-		if (arg instanceof byte[])
-		{
-			byte[] data = (byte[]) arg;
-			return ValidationUtils.isPngData(data);
-		}
-		else
-		{
-			return false;
-		}
+		return ValidationUtils.isPngData(data);	
 	}
-
 }
